@@ -29,7 +29,7 @@ async def _human_time_duration(seconds):
     return ", ".join(parts)
 
 
-@Client.on_message(filters.command(["king"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["king", "وقت التشغيل", "الوقت"], prefixes=f"{HNDLR}"))
 async def ping(client, m: Message):
     start = time()
     current_time = datetime.utcnow()
@@ -38,7 +38,7 @@ async def ping(client, m: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await m_reply.edit(
-        f"<b>I'm Online🍀</b> `{delta_ping * 1000:.3f} ms` \n<b>⏳Uptime </b> - `{uptime}`"
+        f"<b>أنا متصل🍀</b> `{delta_ping * 1000:.3f} ms` \n<b>⏳مدة التشغيل </b> - `{uptime}`"
     )
 
 
@@ -64,7 +64,7 @@ async def restart(client, m: Message):
 @Client.on_message(filters.command(["Good morning", "Gud morning", "gud mrng", "ഗുഡ് മോർണിംഗ്"], prefixes=f"{HNDLR}"))
 async def goodmorning(client, m: Message):
     GM = f"""
-<i>🍂☕️Gøød Mørning..⏱️ Have a nice day..🙂</i>
+<i>💞☕️صباح الخير..⏱️ طاب يومك..🙂</i>
 """
     await m.reply(GM)
 
@@ -72,7 +72,7 @@ async def goodmorning(client, m: Message):
 @Client.on_message(filters.command(["Good Evening", "Gud evng", "gud evening", "ഗുഡ് ഈവനിംഗ്", "ഗുഡ് ഈവെനിംഗ്"], prefixes=f"{HNDLR}"))
 async def goodevening(client, m: Message):
     GE = f"""
-<i> 😁Gøød Evening..☕️</i>
+<i>💞مساء الخير..☕️</i>
 """
     await m.reply(GE)
 
@@ -80,6 +80,6 @@ async def goodevening(client, m: Message):
 @Client.on_message(filters.command(["Good Night", "Gud nt", "gud night", "ഗുഡ് നൈറ്റ്‌", "gudnyt"], prefixes=f"{HNDLR}"))
 async def goodnight(client, m: Message):
     GN = f"""
-<i> 😴🛌Gøød Night 🌚</i>
+<i> 😴🛌مساء الخير 🌚</i>
 """
     await m.reply(GN)

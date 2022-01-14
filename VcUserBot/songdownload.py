@@ -23,11 +23,11 @@ async def song(client, message: Message):
     if not urlissed:
         await client.send_message(
             message.chat.id,
-            "⚠️Check spelling!",
+            "⚠️تحقق من التشغيل🔎!",
         )
         return
     pablo = await client.send_message(
-        message.chat.id, f"**🔎 Searching Song 🌚** `{urlissed}`"
+        message.chat.id, f"**🔄 يتم البحث يا قلبي🔎💞** `{urlissed}`"
     )
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
     mi = search.result()
@@ -63,12 +63,12 @@ async def song(client, message: Message):
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(mo, download=True)
     except Exception as e:
-        await pablo.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
+        await pablo.edit(f"**فشل التنزيل** \n**خطأ :** `{str(e)}`")
         return
     c_time = time.time()
     capy = f"""
-**🎙Song Name:** {thum}
-**🗂️Requested by:** {message.from_user.mention}
+**🎙إسم الأغنية:** {thum}
+**بوسطة من:** {message.from_user.mention}
 """
     file_stark = f"{ytdl_data['id']}.mp3"
     await client.send_audio(
@@ -83,7 +83,7 @@ async def song(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"**📥 Download** `{urlissed}`",
+            f"**📥 تحميل** `{urlissed}`",
             file_stark,
         ),
     )
@@ -140,7 +140,7 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
         if file_name:
             try:
                 await message.edit(
-                    "{}\n**File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
+                    "{}\n**اسم الملف:** `{}`\n{}".format(type_of_ps, file_name, tmp)
                 )
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -233,15 +233,15 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command(["vsong", "dvideo"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["vsong", "dvideo", "بحدث", "ابحث عن فديو"], prefixes=f"{HNDLR}"))
 async def vsong(client, message: Message):
     urlissed = get_text(message)
 
     pablo = await client.send_message(
-        message.chat.id, f"**🔎 Searching video 🎞..** `{urlissed}`"
+        message.chat.id, f"**🔄 يتم البحث يا قلبي عن الفديو 🔎💞** `{urlissed}`"
     )
     if not urlissed:
-        await pablo.edit("Invalid Command Syntax Please Check help Menu To Know More!")
+        await pablo.edit("مزامنة الأوامر غير صالحة يرجى التحقق من قائمة المساعدة لمعرفة المزيد!")
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -271,13 +271,13 @@ async def vsong(client, message: Message):
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url, download=True)
     except Exception as e:
-        await event.edit(event, f"**Download Failed** \n**Error :** `{str(e)}`")
+        await event.edit(event, f"**التحميل فشل** \n**خطأ :** `{str(e)}`")
         return
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"""
-**📽 Video :** {thum}
-**🔎 Requested by:** {message.from_user.mention}
+**📽 اسم الفديو:** {thum}
+**🔎 بوسطة من:** {message.from_user.mention}
 """
     await client.send_video(
         message.chat.id,
@@ -291,7 +291,7 @@ async def vsong(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"**📥 Download** `{urlissed}`",
+            f"**📥 تحميل** `{urlissed}`",
             file_stark,
         ),
     )
