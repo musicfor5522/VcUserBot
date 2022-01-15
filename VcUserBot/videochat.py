@@ -112,7 +112,7 @@ async def play(client, m: Message):
     if replied:
         if replied.audio or replied.voice:
             await m.delete()
-            huehue = await replied.reply("**يتم المعالجه يا قلبي💞🔎**")
+            huehue = await replied.reply("*🔃 ¦ انتظار يتم المعالجة**")
             dl = await replied.download()
             link = replied.link
             if replied.audio:
@@ -161,7 +161,7 @@ async def play(client, m: Message):
             await m.reply("الرد على ملف الصوت أو إعطاء شيء للبحث🔎📂")
         else:
             await m.delete()
-            huehue = await m.reply("🔄 يتم البحث يا قلبي🔎💞")
+            huehue = await m.reply("🔄 ¦ انتظار يتم البحث")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             if search == 0:
@@ -219,7 +219,7 @@ async def vplay(client, m: Message):
     if replied:
         if replied.video or replied.document:
             await m.delete()
-            huehue = await replied.reply("**يتم المعالجه يا قلبي💞🔎**")
+            huehue = await replied.reply("*🔃 ¦ انتظار يتم المعالجة**")
             dl = await replied.download()
             link = replied.link
             if len(m.command) < 2:
@@ -282,7 +282,7 @@ async def vplay(client, m: Message):
             await m.reply("**الرد على ملف الفيديو أو إعطاء شيء للبحث📂💞**")
         else:
             await m.delete()
-            huehue = await m.reply("**🔄 يتم البحث يا قلبي🔎💞**")
+            huehue = await m.reply("**🔄 ¦ انتظار يتم البحث**")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             Q = 720

@@ -7,7 +7,7 @@ from VcUserBot.helpers.handlers import skip_current_song, skip_item
 from VcUserBot.helpers.queues import QUEUE, clear_queue
 
 
-@Client.on_message(filters.command(["skip", "/تخطي", "/skip", "تخطي"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["skip", "/تخطي", "/skip", "تخطي", "التالي"], prefixes=f"{HNDLR}"))
 async def skip(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
@@ -40,7 +40,7 @@ async def skip(client, m: Message):
             await m.reply(OP)
 
 
-@Client.on_message(filters.command(["end", "stop"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["end", "stop", "توقف", "/end", "اسكت", "قف", "اقف", "/stop"], prefixes=f"{HNDLR}"))
 async def stop(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
@@ -48,14 +48,14 @@ async def stop(client, m: Message):
         try:
             await call_py.leave_group_call(chat_id)
             clear_queue(chat_id)
-            await m.reply("**تـم انـهـاء الـمـحـادثـة الـصـوتـيـة📃**")
+            await m.reply("**❎ ¦ تـم انـهـاء الـمـحـادثـة الـصـوتـيـة**")
         except Exception as e:
             await m.reply(f"**خطأ** \n`{e}`")
     else:
         await m.reply("**لا يـوجـد شـئ قـيـد الـتـشـغـيـل🔎💞**")
 
 
-@Client.on_message(filters.command(["pause"], prefixes=f"{HNDLR}"))
+@Client.on_message(filters.command(["pause", "/pause"], prefixes=f"{HNDLR}"))
 async def pause(client, m: Message):
     await m.delete()
     chat_id = m.chat.id
